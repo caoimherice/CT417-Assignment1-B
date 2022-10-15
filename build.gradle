@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'war'
 }
 
 group 'org.example'
@@ -7,15 +8,26 @@ version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    // jitpack builds Git projects on demand and provides ready-to-use artifacts
     maven { url 'https://jitpack.io' }
 }
 
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation 'com.github.caoimherice:CT417-Assignment1:master-SNAPSHOT'
+    // adding project release from part a as a dependency
+    implementation 'com.github.caoimherice:CT417-Assignment1:v1.0.0'
+    // dependency for Terasoluna Joda Time
+    implementation 'org.terasoluna.gfw:terasoluna-gfw-jodatime-dependencies:5.6.2.RELEASE'
 }
 
 test {
     useJUnitPlatform()
+}
+
+// building a war file
+war {
+    enabled=true
+    archiveBaseName = 'assignment1-B'
+    archiveVersion =  '0.1.0'
 }
